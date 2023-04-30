@@ -60,4 +60,4 @@ As an example, `environments/i3/home/.config` with `info.username = "Curstantine
 
 For files that access `/boot/` and other directories inaccessible by the user.
 
-Changes done to this directory could be controlled by passing a `--no-root` flag to `confs`.
+Changes done to this directory could be controlled by passing a `--no-root` flag to `confls`.
