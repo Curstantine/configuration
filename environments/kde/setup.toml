@@ -1,0 +1,6 @@
+[info]
+name = "kde"
+version = 1
+user = "Curstantine"
+use_shared = true
+requires = ["kde", "neovim", "ripgrep"]
