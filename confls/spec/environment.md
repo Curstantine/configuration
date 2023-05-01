@@ -19,7 +19,7 @@ This file contains the dependencies, files and other options that describe the e
    Display name of this environment.
 
 2. `version`
-    A positive whole integer. (e.g. 1, 20, 65)
+   A positive whole integer. (e.g. 1, 20, 65)
 
 3. `username`
    Username of the user these changes should be made as, typically used to find the `$HOME` directory.
@@ -33,16 +33,16 @@ This file contains the dependencies, files and other options that describe the e
    For an example:
 
    ```
-       - [shared] ~/.config/kitty/
-           |- ~/.config/kitty/kitty.conf
-           |- ~/.config/kitty/current-theme.conf
+    - [shared] ~/.config/kitty/
+        |- ~/.config/kitty/kitty.conf
+        |- ~/.config/kitty/current-theme.conf
 
-       - [i3] ~/.config/kitty/
-           |-  ~/.config/kitty/kitty.conf
+    - [i3] ~/.config/kitty/
+        |-  ~/.config/kitty/kitty.conf
 
-       - [result]
-           |- environments/i3/.config/kitty/kitty.conf
-           |- environments/shared/.config/kitty/current-theme.conf
+    - [result]
+        |- environments/i3/.config/kitty/kitty.conf
+        |- environments/shared/.config/kitty/current-theme.conf
    ```
 
 ## destroy.toml
