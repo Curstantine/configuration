@@ -5,10 +5,10 @@ pub struct EnvironmentConfig {
 
 #[derive(Debug, Clone)]
 pub struct EnvironmentConfigInfo {
-    /// Name of the environment
+    /// Name of the environment.
     pub name: String,
 
-    /// Positive whole integer
+    /// Positive whole integer.
     pub version: u32,
 
     /// Name of the user these changes should take place in.
@@ -19,6 +19,6 @@ pub struct EnvironmentConfigInfo {
     /// List of dependencies available from the AUR.
     pub requires: Vec<String>,
 
-    /// Use shared config
+    /// Use shared config.
     pub use_shared: bool,
 }
