@@ -1,6 +1,0 @@
-[info]
-name = "kde"
-version = 1
-username = "test"
-use_shared = true
-requires = ["kde", "neovim", "ripgrep"]
