@@ -14,5 +14,4 @@ I don't know.
 
 ## How it works
 
-[confls](./confls) resolves different [environments](./environments) listed,
-and setup their dependencies, files and other configurations as needed, these environment must follow the [environment specification](./confls/specs/environment.md).
+[confls](https://gitlab.com/Curstantine/confls) resolves different [environments](./environments) listed and sets them appropriately.

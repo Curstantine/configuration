@@ -1,1 +1,0 @@
-docker stop confls-arch-dev && docker rm confls-arch-dev && docker rmi confls-arch:latest
