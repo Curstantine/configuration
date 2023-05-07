@@ -1,0 +1,5 @@
+name = "i3"
+username = "Curstantine"
+use_shared = true
+
+requires = ["i3-wm", "i3status-rust", "qt5ct", "rofi", "feh", "xgamma"]
