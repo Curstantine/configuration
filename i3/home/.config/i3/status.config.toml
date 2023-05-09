@@ -18,6 +18,9 @@ critical_bg = { link = "idle_bg" }
 icons = "awesome6"
 
 [[block]]
+block = "music"
+
+[[block]]
 block = "kdeconnect"
 
 [[block]]
