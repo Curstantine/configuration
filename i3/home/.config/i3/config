@@ -18,7 +18,7 @@ exec --no-startup-id xgamma -gamma 0.85
 exec --no-startup-id feh --bg-scale /usr/share/wallpapers/Next/contents/images_dark/1920x1080.png
 
 # Sets the keyboard layout to dvorak.
-exec setxkbmap -layout dvorak
+exec_always setxkbmap -layout dvorak
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
