@@ -11,6 +11,9 @@ exec --no-startup-id dunst
 exec --no-startup-id /usr/bin/kwalletd5
 exec --no-startup-id /usr/lib/pam_kwallet_init
 
+# Add ssh keys to agent
+exec --no-startup-id /usr/bin/ssh-add -q
+
 # Set gamma value
 exec --no-startup-id xgamma -gamma 0.85
 
