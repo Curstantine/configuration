@@ -1,5 +1,6 @@
 [info]
 name = "i3"
+version = 1
 username = "Curstantine"
 use_shared = true
 
