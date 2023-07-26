@@ -1,17 +1,7 @@
 # Configuration
 
-I don't know.
-
-## Requirements
-
-- Arch Linux (systemd)
-
-  - A configured user.
-
-- Rust
-
-- paru
+Configuration files for different linux DEs and operating systems.
 
 ## How it works
 
-[confls](https://gitlab.com/Curstantine/confls) resolves different [environments](./environments) listed and sets them appropriately.
+[confls](https://gitlab.com/Curstantine/confls) resolves different environments listed and sets them appropriately.
