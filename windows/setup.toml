@@ -1,0 +1,8 @@
+[info]
+name = "Windows"
+os = "windows"
+version = 1
+username = "Curstantine"
+use_shared = false
+
+requires = ["winget:wez.wezterm"]
