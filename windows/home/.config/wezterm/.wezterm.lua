@@ -9,7 +9,7 @@ if wezterm.config_builder then
 end
 
 --- START General Settings ---
-config.default_prog = { 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe' }
+config.default_prog = { 'pwsh.exe' }
 --- END General Settings ---
 
 --- START Theme Settings ---
