@@ -15,7 +15,7 @@ config.default_prog = { 'nu.exe' }
 --- START Theme Settings ---
 config.color_scheme = 'Sonokai (Gogh)'
 config.font = wezterm.font 'JetBrains Mono'
-config.font_size = 13
+config.font_size = 11
 
 local theme_colors = {
       mantle = "#181825",
@@ -26,17 +26,20 @@ local theme_colors = {
   }
 
 config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 
 config.window_frame = {
       font = wezterm.font { family = 'Inter', weight = 'Bold' },
       font_size = 10.0,
       active_titlebar_bg = 'black',
-      inactive_titlebar_bg = '#2b2b2b',
+      inactive_titlebar_bg = 'black',
 }
 
 config.colors = {
       background = 'black',
       tab_bar = {
+            background = 'black',
             inactive_tab_edge = 'none',
             inactive_tab = {
                   bg_color = 'none',
@@ -47,8 +50,9 @@ config.colors = {
                   fg_color = theme_colors.overlay_1,
               },
             active_tab = {
-                  bg_color = theme_colors.base,
+                  bg_color = 'none',
                   fg_color = theme_colors.text,
+                  underline = 'Single',
               },
             new_tab = {
                   bg_color = 'none',
@@ -63,31 +67,6 @@ config.colors = {
 
 
 --- END Theme Settings ---
-
-
---- Start Exec Specific Settings ---
-wezterm.on('update-status', function(window, pane)
-      local overrides = window:get_config_overrides() or {}
-
-      if string.find(pane:get_title(), 'hx.*') then
-            overrides.window_padding = {
-                  left = 0,
-                  right = 0,
-                  top = 0,
-                  bottom = 0,
-            }
-      else
-            overrides.window_padding = {
-                  left = '1cell',
-                  right = '1cell',
-                  top = '0.5cell',
-                  bottom = '0.5cell',
-            }
-      end
-      
-      window:set_config_overrides(overrides)
-end)
---- END Exec Specific Settings ---
 
 
 --- START Key Bindings ---
