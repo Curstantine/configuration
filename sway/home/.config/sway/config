@@ -24,6 +24,9 @@ input * {
 for_window [shell="xwayland"] title_format "[XWayland] %title"
 
 
+### Backend bindings:
+exec_always import-gsettings
+
 ### Key bindings:
     # Start a terminal
     bindsym $mod+Return exec kitty
