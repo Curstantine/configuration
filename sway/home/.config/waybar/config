@@ -1,4 +1,5 @@
 {
+    "height": 28,
     "layer": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
@@ -38,11 +39,11 @@
         "format": "{player_icon} {dynamic}",
         "format-paused": "{status_icon} {dynamic}",
         "player-icons": {
-            "default": "▶ ",
-	    "quodlibet": "🎵"
+            "default": " ",
+	    "quodlibet": " "
         },
         "status-icons": {
-            "paused": "⏸ "
+            "paused": " "
         },
 
 	"title-len": 25,
@@ -50,11 +51,11 @@
 	"dynamic-importance-order": ["title", "position", "length", "album"]
     },
     "cpu": {
-        "format": "CPU: {usage}%",
+        "format": " {usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": "Mem: {}%",
+        "format": " {}%",
 	"tooltip": false
     },
     "backlight": {
@@ -63,29 +64,29 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
+	"interval": 5,
         "states": {
+	    "full": 100,
             "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        "format-good": "", // An empty format will hide the module
-        "format-full": "",
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "format-wifi": "{essid} ",
+        "format-wifi": " {essid}",
         "format-ethernet": "{ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr} ({signalStrength}%)",
         "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠",
+        "format-disconnected": " Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "wireplumber": {
-        "format": "{volume}% {icon}",
+        "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": ["", "", ""],
 	"on-click": "pavucontrol"
