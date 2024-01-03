@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["tray", "cpu", "memory", "wireplumber", "network", "backlight", "battery", "clock"],
+    "modules-right": ["tray", "mpris", "cpu", "memory", "wireplumber", "network", "backlight", "battery", "clock"],
     "sway/window": {
         "max-length": 50
     },
@@ -32,6 +32,22 @@
 		"on-scroll-up": "shift_up",
 		"on-scroll-down": "shift_down"
 	}
+    },
+    "mpris": {
+        "interval": 1,
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} {dynamic}",
+        "player-icons": {
+            "default": "▶ ",
+	    "quodlibet": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸ "
+        },
+
+	"title-len": 25,
+	"dynamic-order": ["title", "album", "position", "length"],
+	"dynamic-importance-order": ["title", "position", "length", "album"]
     },
     "cpu": {
         "format": "CPU: {usage}%",

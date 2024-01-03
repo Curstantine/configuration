@@ -60,6 +60,11 @@ exec_always import-gsettings
     bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
+    # Media control:
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioPrev exec playerctl previous
+    bindsym XF86AudioNext exec playerctl next
+
 
 ### Moving around:
     bindsym $mod+Left focus left
@@ -143,7 +148,7 @@ bindsym $mod+r mode "resize"
 
 
 ### Personalization:
-    font Inter 9
+    font "Inter Nerd Font Propo" 9
     gaps inner 4
     default_border none
 
