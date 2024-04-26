@@ -1,0 +1,11 @@
+profile {
+	output HDMI-A-1 mode --custom 1920x1080@75Hz position 0,0
+	output LVDS-1 mode 1366x768@60Hz position 1920,300 
+	exec swaymsg workspace 1, move workspace to HDMI-A-1
+	exec swaymsg workspace 2, move workspace to LVDS-1
+}
+
+profile {
+	output LVDS-1 enable
+}
+
