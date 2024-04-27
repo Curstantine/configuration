@@ -86,10 +86,10 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "wireplumber": {
-        "format": "{icon} {volume}%",
+        "format": "{icon} {volume}% ({node_name})",
         "format-muted": "",
         "format-icons": ["", "", ""],
-	"on-click": "pavucontrol"
+	"on-click": "~/.config/waybar/toggle-pipewire-profile.sh"
     },
     "tray": {
     	"icon-size": 16,
