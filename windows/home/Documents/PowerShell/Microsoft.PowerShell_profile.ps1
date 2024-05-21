@@ -1,3 +1,7 @@
+# Packages:
+# Install-Module Sensation-Snagger
+# Install-Module Microsoft.WinGet.Client
+
 $HOSTNAME = [System.Net.Dns]::GetHostName()
 $USERNAME = $env:USERNAME
 $USERHOME = [System.Environment]::GetFolderPath("UserProfile")
