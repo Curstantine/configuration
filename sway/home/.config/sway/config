@@ -19,6 +19,8 @@ input * {
 ### Mark XWayland windows:
 for_window [shell="xwayland"] title_format "[XWayland] %title"
 
+### Mark open/save file selector dialogs to be floating
+for_window [title="(?:Open|Save) (?:file|folder|as)"] floating enable
 
 ### Backend bindings:
 exec_always import-gsettings
