@@ -3,7 +3,7 @@ set $mod Mod4
 ### Auto start:
 exec_always kanshi
 exec mako
-exec wl-paste -t text --watch clipman store --no-persist
+exec wl-paste --watch cliphist store 
 
 
 ### Idle configuration:
@@ -41,6 +41,9 @@ output HDMI-A-1 mode --custom 1920x1080
     # Screenshot manager
     bindsym $mod+Print exec shotman -C --capture output
     bindsym $mod+Shift+Print exec shotman -C --capture region
+
+    # Clipboard manager
+    bindsym $mod+v exec cliphist list | rofi -dmenu | cliphist decode | wl-copy
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -106,8 +109,8 @@ output HDMI-A-1 mode --custom 1920x1080
 
 
 ### Layout stuff:
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+Shift+b splith
+    bindsym $mod+Shift+v splitv
 
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
