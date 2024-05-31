@@ -22,6 +22,33 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
         }
 }
 
+function Set-CodeLocation {
+    param([string]$BaseDirectory, [string]$ProjectName)
+
+    $relPath = Join-Path $BaseDirectory $ProjectName
+    $targetPath = Join-Path $env:USERPROFILE "Code" $relPath
+
+    if (Test-Path $targetPath -PathType Container) {
+        return Set-Location $targetPath
+    }
+
+    $relPath = Join-Path $BaseDirectory $ProjectName
+    $promptMessage = "Directory '$relPath' not found under '~/Code/'. Do you want to clone it from Git? (Y/N)"
+    $response = Read-Host -Prompt $promptMessage
+
+    if ($response -eq "Y" -or $response -eq "y") {
+        $gitUrl = Read-Host "Enter the Git URL:"
+        git clone $gitUrl $targetPath
+        Set-Location $targetPath
+    } else {
+        Write-Host "Operation canceled. Directory not cloned from Git."
+    }
+}
+
+# Aliases
+Set-Alias -Name cdcd -Value Set-CodeLocation
+Set-Alias -Name cobalt -Value Sensation-Snagger
+
 function prompt {
     $prompt = ""
     $currentLocation = Get-Location
@@ -34,3 +61,4 @@ function prompt {
 
     $prompt
 }
+
