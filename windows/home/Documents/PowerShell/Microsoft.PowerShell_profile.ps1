@@ -14,12 +14,12 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 # Tab Completion: winget
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
-        [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
-        $Local:word = $wordToComplete.Replace('"', '""')
-        $Local:ast = $commandAst.ToString().Replace('"', '""')
-        winget complete --word="$Local:word" --commandline "$Local:ast" --position $cursorPosition | ForEach-Object {
-            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
-        }
+    [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
+    $Local:word = $wordToComplete.Replace('"', '""')
+    $Local:ast = $commandAst.ToString().Replace('"', '""')
+    winget complete --word="$Local:word" --commandline "$Local:ast" --position $cursorPosition | ForEach-Object {
+        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+    }
 }
 
 function Set-CodeLocation {
@@ -47,6 +47,53 @@ function Set-CodeLocation {
     Set-Location $targetPath
 }
 
+# Tab Completion: Set-CodeLocation
+# Register argument completer for BaseDirectory parameter
+Register-ArgumentCompleter -CommandName Set-CodeLocation -ParameterName BaseDirectory -ScriptBlock {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameter)
+
+    $codeDir = Join-Path $env:USERPROFILE "Code"
+    if (-not (Test-Path $codeDir -PathType Container)) {
+        return;
+    }
+
+    Get-ChildItem -Path $codeDir -Directory | ForEach-Object {
+        if (-not $wordToComplete) {
+            [System.Management.Automation.CompletionResult]::new($_.Name, $_.Name, 'ParameterValue', $_.Name)
+            return;
+        }
+
+        if ($_.Name -like "$wordToComplete*") {
+            [System.Management.Automation.CompletionResult]::new($_.Name, $_.Name, 'ParameterValue', $_.Name)
+        }
+    }
+}
+
+# Register argument completer for ProjectName parameter
+Register-ArgumentCompleter -CommandName Set-CodeLocation -ParameterName ProjectName -ScriptBlock {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameter)
+
+    if (-not $fakeBoundParameter.BaseDirectory) {
+        return;
+    }
+
+    $baseDir = Join-Path $env:USERPROFILE "Code" $fakeBoundParameter.BaseDirectory
+    if (-not (Test-Path $baseDir -PathType Container)) {
+        return 
+    }
+
+    Get-ChildItem -Path $baseDir -Directory | ForEach-Object {
+        if (-not $wordToComplete) {
+            [System.Management.Automation.CompletionResult]::new($_.Name, $_.Name, 'ParameterValue', $_.Name)
+            return;
+        }
+
+        if ($_.Name -like "$wordToComplete*") {
+            [System.Management.Automation.CompletionResult]::new($_.Name, $_.Name, 'ParameterValue', $_.Name)
+        }
+    }
+}
+
 function Get-Repository {
     param ([switch]$Open)
 
@@ -66,7 +113,7 @@ function Get-Repository {
     # Display the remote URL
     Write-Host "Remote URL: $remoteUrl"
 
-   # Open the remote URL in the default browser if the -Open flag is provided
+    # Open the remote URL in the default browser if the -Open flag is provided
     if ($Open) {
         try {
             # Adjust the URL if it uses the SSH format
@@ -80,7 +127,8 @@ function Get-Repository {
             }
 
             Start-Process $remoteUrl
-        } catch {
+        }
+        catch {
             Write-Host "Failed to open the remote URL: $_"
         }
     }
