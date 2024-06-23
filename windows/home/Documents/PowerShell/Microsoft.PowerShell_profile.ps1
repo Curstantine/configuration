@@ -32,21 +32,64 @@ function Set-CodeLocation {
         return Set-Location $targetPath
     }
 
-    $relPath = Join-Path $BaseDirectory $ProjectName
-    $promptMessage = "Directory '$relPath' not found under '~/Code/'. Do you want to clone it from Git? (Y/N)"
-    $response = Read-Host -Prompt $promptMessage
+    $response = Read-Host -Prompt "Directory '$relPath' not found under '~/Code/'. Do you want to clone it from Git? (Y/N)"
+    if (-not ($response -eq "Y" -or $response -eq "y")) {
+        return Write-Host "Operation canceled. Directory not cloned from Git."
+    }
 
-    if ($response -eq "Y" -or $response -eq "y") {
-        $gitUrl = Read-Host "Enter the Git URL:"
-        git clone $gitUrl $targetPath
-        Set-Location $targetPath
-    } else {
-        Write-Host "Operation canceled. Directory not cloned from Git."
+    $baseDirPath = Split-Path $targetPath -Parent
+    if (-not (Test-Path -Path $baseDirPath)) {
+        New-Item -Path $baseDirPath -ItemType Directory
+    }
+
+    $gitUrl = Read-Host "Enter the Git URL"
+    git clone $gitUrl $targetPath
+    Set-Location $targetPath
+}
+
+function Get-Repository {
+    param ([switch]$Open)
+
+    if (-not (Test-Path -Path ".git" -PathType Container)) {
+        Write-Host "Not a git repository."
+        return
+    }
+
+    # Get the remote URL
+    $remoteUrl = git config --get remote.origin.url
+
+    if (-not $remoteUrl) {
+        Write-Host "No remote URL found."
+        return
+    }
+
+    # Display the remote URL
+    Write-Host "Remote URL: $remoteUrl"
+
+   # Open the remote URL in the default browser if the -Open flag is provided
+    if ($Open) {
+        try {
+            # Adjust the URL if it uses the SSH format
+            if ($remoteUrl -match "^git@") {
+                $remoteUrl = $remoteUrl -replace ":", "/"
+                $remoteUrl = $remoteUrl -replace "^git@", "https://"
+            }
+            # Ensure the URL starts with https:// or http://
+            if ($remoteUrl -notmatch "^https?://") {
+                $remoteUrl = "https://$remoteUrl"
+            }
+
+            Start-Process $remoteUrl
+        } catch {
+            Write-Host "Failed to open the remote URL: $_"
+        }
     }
 }
 
+
 # Aliases
 Set-Alias -Name cdcd -Value Set-CodeLocation
+Set-Alias -Name repo -Value Get-Repository
 Set-Alias -Name cobalt -Value Sensation-Snagger
 
 function prompt {
