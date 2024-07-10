@@ -1,0 +1,43 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Inter Nerd Font Propo", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #191724;
+    border-bottom: 2px solid #333648;
+    color: #E1E3E4;
+}
+
+tooltip {
+  background: #191724;
+  border: 1px solid #333648;
+}
+
+tooltip label {
+  color: white;
+}
+
+#workspaces button {
+    padding: 2px 5px;
+    color: #E1E3E4;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    background: #55393D;
+    border-bottom: 2px solid #FB617E;
+}
+
+#tray, #mpris, #cpu, #memory, #wireplumber, #network, #backlight, #battery, #clock {
+    padding: 0px 8px;
+}
+
+#battery.charging {
+    color: #9ED06C;
+}
+

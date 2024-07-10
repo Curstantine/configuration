@@ -1,0 +1,100 @@
+{
+    "height": 28,
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["tray", "mpris", "cpu", "memory", "wireplumber", "network", "backlight", "battery", "clock"],
+    "hyprland/window": {
+        "max-length": 50,
+	"separate-outputs": true
+    },
+    "clock": {
+        "interval": 60,
+	"format": "{:%I:%M %p}",
+	"format-alt": "{:%A, %B %d, %Y - %I:%M %p}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode"          : "year",
+		"mode-mon-col"  : 3,
+		"weeks-pos"     : "right",
+		"on-scroll"     : 1,
+		"on-click-right": "mode",
+		"format": {
+			"months":     "<span color='#ffead3'><b>{}</b></span>",
+			"days":       "<span color='#ecc6d9'><b>{}</b></span>",
+			"weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+			"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+			"today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+		}
+	},
+	"actions": {
+		"on-click-right": "mode",
+		"on-click-forward": "tz_up",
+		"on-click-backward": "tz_down",
+		"on-scroll-up": "shift_up",
+		"on-scroll-down": "shift_down"
+	}
+    },
+    "mpris": {
+        "interval": 1,
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} {dynamic}",
+        "player-icons": {
+            "default": " ",
+	    "mpd": " "
+        },
+        "status-icons": {
+            "paused": " "
+        },
+
+	"title-len": 25,
+	"dynamic-order": ["title", "album", "position", "length"],
+	"dynamic-importance-order": ["title", "position", "length", "album"]
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": " {}%",
+	"tooltip": false
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+	"device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+	"interval": 5,
+        "states": {
+	    "full": 100,
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr} ({signalStrength}%)",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "wireplumber": {
+        "format": "{icon} {volume}% ({node_name})",
+        "format-muted": "",
+        "format-icons": ["", "", ""],
+	"on-click": "~/.config/waybar/toggle-pipewire-profile.sh"
+    },
+    "tray": {
+    	"icon-size": 16,
+	"spacing": 4
+    }
+}
