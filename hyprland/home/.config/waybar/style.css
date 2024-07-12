@@ -28,7 +28,7 @@ tooltip label {
     border-bottom: 2px solid transparent;
 }
 
-#workspaces button.focused {
+#workspaces button.active {
     background: #55393D;
     border-bottom: 2px solid #FB617E;
 }
