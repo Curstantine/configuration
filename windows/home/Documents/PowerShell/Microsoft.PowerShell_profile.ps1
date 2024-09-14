@@ -134,6 +134,11 @@ function Get-Repository {
     }
 }
 
+function Clear-StaleBranches {
+    git fetch --prune
+    git branch -vv | Where-Object { $_ -match 'gone\]' } | ForEach-Object { $_.Trim().Split()[0] } | ForEach-Object { git branch -D $_ }
+}
+
 
 # Aliases
 Set-Alias -Name cdcd -Value Set-CodeLocation
