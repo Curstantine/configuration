@@ -1,6 +1,7 @@
 # Packages:
 # Install-Module Sensation-Snagger
 # Install-Module Microsoft.WinGet.Client
+# winget install --id Schniz.fnm
 
 $HOSTNAME = [System.Net.Dns]::GetHostName()
 $USERNAME = $env:USERNAME
@@ -139,6 +140,8 @@ function Clear-StaleBranches {
     git branch -vv | Where-Object { $_ -match 'gone\]' } | ForEach-Object { $_.Trim().Split()[0] } | ForEach-Object { git branch -D $_ }
 }
 
+# fnm support
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 # Aliases
 Set-Alias -Name cdcd -Value Set-CodeLocation
