@@ -1,3 +1,11 @@
 [Colors:View]
+BackgroundNormal=#00000000
 
-BackgroundNormal=#xxxxxx
+[General]
+TerminalApplication=kitty
+
+[Icons]
+Theme=WhiteSur-dark
+
+[UiSettings]
+ColorScheme=colors
