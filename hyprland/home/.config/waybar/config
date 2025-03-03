@@ -1,9 +1,9 @@
 {
     "height": 28,
     "layer": "top",
-    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["tray", "mpris", "cpu", "memory", "wireplumber", "network", "backlight", "battery", "clock"],
+    "modules-right": ["tray", "mpris", "cpu", "memory", "backlight", "custom/brightness", "wireplumber", "network", "battery", "clock"],
     "hyprland/window": {
         "max-length": 50,
 	"separate-outputs": true
@@ -65,6 +65,14 @@
         "format": "{percent}% {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
+    "custom/brightness": {
+	"exec": "ddcutil -b 7 getvcp 10 -t | grep '^VCP' | awk '{print $4}'",
+        "format": " {}%",
+        "interval": 0,
+        "on-scroll-up": "ddcutil -b 7 setvcp 10 + 5",
+        "on-scroll-down": "ddcutil -b 7 setvcp 10 - 5",
+     	"tooltip": false
+    },
     "battery": {
 	"interval": 5,
         "states": {
@@ -80,15 +88,15 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "format-wifi": " {essid}",
+        "format-wifi": "  {signalStrength}%",
         "format-ethernet": "{ipaddr}/{cidr}",
-        "tooltip-format": "{ifname} via {gwaddr} ({signalStrength}%)",
+        "tooltip-format": "{essid}\n{ifname} via {gwaddr} ({signalStrength}%)",
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": " Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "wireplumber": {
-        "format": "{icon} {volume}% ({node_name})",
+        "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": ["", "", ""],
 	"on-click": "pavucontrol"

@@ -33,8 +33,12 @@ tooltip label {
     border-bottom: 2px solid #FB617E;
 }
 
-#tray, #mpris, #cpu, #memory, #wireplumber, #network, #backlight, #battery, #clock {
-    padding: 0px 8px;
+#tray, #mpris, #cpu, #memory, #wireplumber, #custom-brightness, #network, #backlight, #battery, #clock {
+    padding: 0px 6px;
+}
+
+#clock {
+    padding-right: 12px;
 }
 
 #battery.charging {
