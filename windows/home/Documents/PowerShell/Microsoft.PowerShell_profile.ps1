@@ -153,10 +153,11 @@ function prompt {
     $currentLocation = Get-Location
 
     # We do a little trolling
-    $currentPath = $currentLocation.Path.Replace($USERHOME, "~").Replace("\", "/")
+    # $prompt += 
+    $currentPath += $currentLocation.Path.Replace($USERHOME, "~").Replace("\", "/")
 
-    $prompt += "$ESC[32m$HOSTNAME$ESC[0m"
-    $prompt += "@$USERNAME $currentPath> "
+    # $prompt += "$ESC[32m$HOSTNAME$ESC[0m"
+    $prompt += "$ESC[32m$USERNAME$ESC[0m $currentPath> "
 
     $prompt
 }
