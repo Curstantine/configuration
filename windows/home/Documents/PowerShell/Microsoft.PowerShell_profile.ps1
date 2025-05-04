@@ -1,10 +1,7 @@
 # Packages:
-# Install-Module Sensation-Snagger
 # Install-Module Microsoft.WinGet.Client
 # winget install --id Schniz.fnm
 
-$HOSTNAME = [System.Net.Dns]::GetHostName()
-$USERNAME = $env:USERNAME
 $USERHOME = [System.Environment]::GetFolderPath("UserProfile")
 
 $ESC = [char]27
@@ -103,7 +100,6 @@ function Get-Repository {
         return
     }
 
-    # Get the remote URL
     $remoteUrl = git config --get remote.origin.url
 
     if (-not $remoteUrl) {
@@ -111,18 +107,15 @@ function Get-Repository {
         return
     }
 
-    # Display the remote URL
     Write-Host "Remote URL: $remoteUrl"
 
-    # Open the remote URL in the default browser if the -Open flag is provided
     if ($Open) {
         try {
-            # Adjust the URL if it uses the SSH format
             if ($remoteUrl -match "^git@") {
                 $remoteUrl = $remoteUrl -replace ":", "/"
                 $remoteUrl = $remoteUrl -replace "^git@", "https://"
             }
-            # Ensure the URL starts with https:// or http://
+            
             if ($remoteUrl -notmatch "^https?://") {
                 $remoteUrl = "https://$remoteUrl"
             }
@@ -140,25 +133,86 @@ function Clear-StaleBranches {
     git branch -vv | Where-Object { $_ -match 'gone\]' } | ForEach-Object { $_.Trim().Split()[0] } | ForEach-Object { git branch -D $_ }
 }
 
+function Remove-NonAudio {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$FolderPath,
+        [switch]$Recurse = $false
+    )
+
+    if (-not (Test-Path -Path $FolderPath -PathType Container)) {
+        Write-Error "The specified folder '$FolderPath' does not exist."
+        return
+    }
+
+    $audioExtensions = @(".flac", ".alac", ".wav", ".opus", ".ogg", ".mp3", ".m4a")
+
+    $getParams = @{
+        Path    = $FolderPath
+        File    = $true
+        Recurse = $Recurse
+    }
+
+    try {
+        $filesToDelete = Get-ChildItem @getParams | Where-Object {
+            $extension = [System.IO.Path]::GetExtension($_.Name).ToLower()
+            $extension -notin $audioExtensions
+        }
+
+        $totalFiles = $filesToDelete.Count
+        if ($totalFiles -eq 0) {
+            Write-Host "No non-audio files found to delete in '$FolderPath'." -ForegroundColor Green
+            return
+        }
+    
+        Write-Host "Found $totalFiles non-audio files to delete in '$FolderPath'." -ForegroundColor Yellow
+    
+        $deletedCount = 0
+        $errorCount = 0
+    
+        foreach ($file in $filesToDelete) {
+            try {
+                Remove-Item -Path $file.FullName -Force
+                $deletedCount++
+                Write-Host "Deleted: $($file.FullName)" -ForegroundColor DarkGray
+            }
+            catch {
+                Write-Error "Failed to delete $($file.FullName): $_"
+                $errorCount++
+            }
+        }
+    
+        Write-Host "`nOperation complete. $deletedCount files deleted." -ForegroundColor Green
+        if ($errorCount -gt 0) {
+            Write-Host "$errorCount files could not be deleted due to errors." -ForegroundColor Red
+        }
+    }
+    catch {
+        Write-Error "An error occurred: $_"
+    }
+}
+
 # fnm support
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 # Aliases
 Set-Alias -Name cdcd -Value Set-CodeLocation
 Set-Alias -Name repo -Value Get-Repository
-Set-Alias -Name cobalt -Value Sensation-Snagger
 
 function prompt {
-    $prompt = ""
     $currentLocation = Get-Location
+    
+    $currentPath += $currentLocation.Path.Replace($USERHOME, "$ESC[32m~$ESC[0m")
+    $prompt = $currentPath
 
-    # We do a little trolling
-    # $prompt += 
-    $currentPath += $currentLocation.Path.Replace($USERHOME, "~").Replace("\", "/")
+    if (Get-Command git -ErrorAction SilentlyContinue) {
+        $branchName = git branch --show-current 2>$null
+        if ($LASTEXITCODE -eq 0 -and $branchName) {
+            $prompt += " $ESC[90m($branchName)$ESC[0m"
+        }
+    }
 
-    # $prompt += "$ESC[32m$HOSTNAME$ESC[0m"
-    $prompt += "$ESC[32m$USERNAME$ESC[0m $currentPath> "
-
+    $prompt += "> "
     $prompt
 }
 
