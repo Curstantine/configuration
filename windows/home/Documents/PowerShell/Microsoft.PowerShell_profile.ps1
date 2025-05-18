@@ -234,9 +234,11 @@ function Set-CodeLocation {
     if (-not (Test-Path -Path $baseDirPath)) {
         New-Item -Path $baseDirPath -ItemType Directory
     }
+    
+    Set-Location $baseDirPath
 
     $gitUrl = Read-Host "Enter the Git URL"
-    git clone $gitUrl $targetPath
+    git clone $gitUrl $ProjectName
     Set-Location $targetPath
 }
 
