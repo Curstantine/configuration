@@ -1,40 +1,44 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "Inter Nerd Font Propo", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Inter Regular", "Inter Nerd Font Propo", Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
     min-height: 0;
 }
 
 window#waybar {
-    background: #191724;
-    border-bottom: 2px solid #333648;
-    color: #E1E3E4;
+    background: #2C2E34;
+    border-bottom: 2px solid #363944;
+    color: #E2E2E3;
 }
 
 tooltip {
-  background: #191724;
-  border: 1px solid #333648;
+  background: #222327;
+  border: 1px solid #414550;
 }
 
 tooltip label {
   color: white;
 }
 
+#workspaces {
+    padding-right: 12px;
+}
+
 #workspaces button {
-    padding: 2px 5px;
-    color: #E1E3E4;
+    padding: 2px 10px;
+    color: #E2E2E3;
     background: transparent;
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid transparent;
 }
 
 #workspaces button.active {
     background: #55393D;
-    border-bottom: 2px solid #FB617E;
+    border-bottom: 1px solid #FF6077;
 }
 
-#tray, #mpris, #cpu, #memory, #wireplumber, #custom-brightness, #network, #backlight, #battery, #clock {
-    padding: 0px 6px;
+#tray, #cpu, #memory, #wireplumber, #custom-brightness, #network, #backlight, #battery, #clock {
+    padding-right: 8px;
 }
 
 #clock {

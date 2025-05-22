@@ -1,11 +1,11 @@
 configuration {
   modi: "drun";
-  font: "Inter Nerd Font 10";
+  font: "Inter Regular 10";
 
   show-icons: true;
 
   location: 2;
-  yoffset: 22;
+  yoffset: 36;
 }
 
 @theme "theme"

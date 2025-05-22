@@ -6,28 +6,28 @@
 * {
     spacing:                     2;
 
-    red:                         #FF6188;
-    redbg:                       #F85E84;
-    blue:                        #7ACCD7;
-    bluebg:                      #78DCE8;
-    green:                       #9ECD6F;
-    greenbg:                     #A9DC76;
-    purple:                      #AB9DF2;
-    yellow:                      #E5C463;
+    red:                         #FC5D7C;
+    redbg:                       #FF6077;
+    blue:                        #76CCE0;
+    bluebg:                      #85D3F2;
+    green:                       #9ED072;
+    greenbg:                     #A7DF78;
+    purple:                      #B39DF3;
+    yellow:                      #E7C664;
 
-    black:                       #181A1C;
-    bgdim:                       #252630;
-    bg0:                         #2B2D3A;
-    bg1:                         #333648;
-    bg2:                         #363A4E;
-    bg3:                         #393E53;
-    bg4:                         #3F4458;
-    fg:                          #E1E3E4;
-    gray:                        #7E8294;
-    graydim:                     #5A5E7A;
+    black:                       #181819;
+    bgdim:                       #222327;
+    bg0:                         #2C2E34;
+    bg1:                         #33353F;
+    bg2:                         #363944;
+    bg3:                         #3B3E48;
+    bg4:                         #414550;
+    fg:                          #E2E2E3;
+    gray:                        #7F8490;
+    graydim:                     #595F6F;
 
     background-color:            transparent;
-    
+
     normal-bg:                   var(bg0);
     normal-fg:                   var(fg);
     selected-bg:                 var(redbg);
@@ -38,7 +38,7 @@
 }
 
 element {
-    padding: 1px;
+    padding: 2px;
     cursor:  pointer;
     spacing: 5px;
     border:  0;
@@ -105,7 +105,8 @@ element-icon {
 
 window {
     padding:          5;
-    border:           1;
+    border:           2;
+    border-color:     var(bg2);
     background-color: var(normal-bg);
 }
 
