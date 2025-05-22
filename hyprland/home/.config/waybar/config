@@ -66,11 +66,11 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "custom/brightness": {
-	"exec": "ddcutil -b 7 getvcp 10 -t | grep '^VCP' | awk '{print $4}'",
+	"exec": "ddcutil getvcp 10 -t | grep '^VCP' | awk '{print $4}'",
         "format": " {}%",
-        "interval": 0,
-        "on-scroll-up": "ddcutil -b 7 setvcp 10 + 5",
-        "on-scroll-down": "ddcutil -b 7 setvcp 10 - 5",
+        "interval": "once",
+        "on-scroll-up": "ddcutil setvcp 10 + 5",
+        "on-scroll-down": "ddcutil setvcp 10 - 5",
      	"tooltip": false
     },
     "battery": {
@@ -99,7 +99,7 @@
         "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": ["", "", ""],
-	"on-click": "pavucontrol"
+	"on-click": "pavucontrol-qt"
     },
     "tray": {
     	"icon-size": 16,
