@@ -37,7 +37,7 @@ tooltip label {
     border-bottom: 1px solid #FF6077;
 }
 
-#tray, #cpu, #memory, #wireplumber, #custom-brightness, #network, #backlight, #battery, #clock {
+#tray, #cpu, #memory, #bluetooth, #wireplumber, #custom-brightness, #network, #backlight, #battery, #clock {
     padding-right: 8px;
 }
 
