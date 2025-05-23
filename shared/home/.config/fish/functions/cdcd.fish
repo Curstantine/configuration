@@ -1,41 +1,41 @@
-function cdcd -d "Set code location or clone from Git if not exists"
-    # Arguments with descriptions
-    argparse 'b/base-directory=' 'p/project-name=' -- $argv
-    or return
+function cdcd -a base_directory project_name
+	if test (count $argv) -ne 2
+		echo "Usage: set_code_location <base_directory> <project_name>"
+		return 1
+	end
 
-    # Set variables from arguments or use defaults
-    set -l base_dir (if set -q _flag_base_directory; echo $_flag_base_directory; else; echo ""; end)
-    set -l proj_name (if set -q _flag_project_name; echo $_flag_project_name; else; echo ""; end)
+	set -l rel_path (string join "/" $base_directory $project_name)
+	set -l target_path (string join "/" $HOME "Code" $rel_path)
 
-    # Construct paths
-    set -l rel_path (string join "/" $base_dir $proj_name)
-    set -l target_path ~/Code/$rel_path
+	
+	if test -d $target_path
+		cd $target_path
+		return
+	end
 
-    # Check if directory exists
-    if test -d $target_path
-        cd $target_path
-        return 0
-    end
+	read -P "Directory '$rel_path' not found under '~/Code/'. Do you want to clone it from Git? (Y/N): " response
+	if not string match -qi "y*" $response
+		echo "Operation canceled. Directory not cloned from Git."
+		return
+	end
 
-    # Ask user if they want to clone
-    read -P "Directory '$rel_path' not found under '~/Code/'. Clone from Git? (Y/N) " response
-    if not string match -qi "y" $response
-        echo "Operation canceled. Directory not cloned from Git."
-        return 1
-    end
+	set -l base_dir_path (path dirname $target_path)
+	if not test -d $base_dir_path
+		mkdir -p $base_dir_path
+	end
 
-    # Create base directory if it doesn't exist
-    set -l base_dir_path (dirname $target_path)
-    if not test -d $base_dir_path
-        mkdir -p $base_dir_path
-    end
+	cd $base_dir_path
 
-    # Get Git URL and clone
-    read -P "Enter the Git URL: " git_url
-    git clone $git_url $target_path
-    cd $target_path
+	read -P "Enter the Git URL/SSH: " git_input
+	if string match -q "@github:*" $git_input
+		set git_input (string replace "@github:" "git@github.com:" $git_input)
+	end
+	
+	git clone $git_url $project_name
+	cd $target_pathi
 end
 
-# Tab completion
-complete -c cdcd -l base-directory -s b -d "Base directory path"
-complete -c cdcd -l project-name -s p -d "Project name"
+complete -c cdcd -f
+complete -c cdcd -n "__fish_is_first_token" -a "(ls -1 ~/Code/ 2>/dev/null | grep -E '^[^.]*\$')"
+complete -c cdcd -n "test (count (commandline -opc)) -eq 2" -a "(ls -1 ~/Code/(commandline -opc)[2]/ 2>/dev/null | grep -E '^[^.]*\$')"
+
