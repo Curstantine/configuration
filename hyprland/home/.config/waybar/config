@@ -115,6 +115,7 @@
 	},
 	"wireplumber": {
 		"format": "{icon} {volume}%",
+		"max-volume": 100,
 		"format-muted": "",
 		"format-icons": ["", "", ""],
 		"on-click": "pavucontrol-qt",
