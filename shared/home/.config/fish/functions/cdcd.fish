@@ -13,9 +13,26 @@ function cdcd -a base_directory project_name
 		return
 	end
 
-	read -P "Directory '$rel_path' not found under '~/Code/'. Do you want to clone it from Git? (Y/N): " response
-	if not string match -qi "y*" $response
+	read -P "Directory '$rel_path' not found under '~/Code/'. Do you want to clone it from Git? (Y/No/new): " response
+
+	if string match -qi "no" $response
 		echo "Operation canceled. Directory not cloned from Git."
+		return
+	end
+
+	if string match -qi "new" $response
+		set -l base_dir_path (path dirname $target_path)
+		if not test -d $base_dir_path
+			mkdir -p $base_dir_path
+		end
+		mkdir -p $target_path
+		echo "New directory '$target_path' created."
+		cd $target_path
+		return
+	end
+
+	if not string match -qi "y*" $response
+		echo "Invalid response. Operation canceled."
 		return
 	end
 
@@ -30,9 +47,9 @@ function cdcd -a base_directory project_name
 	if string match -q "@github:*" $git_input
 		set git_input (string replace "@github:" "git@github.com:" $git_input)
 	end
-	
-	git clone $git_url $project_name
-	cd $target_pathi
+
+	git clone $git_input $project_name
+	cd $target_path
 end
 
 complete -c cdcd -f
