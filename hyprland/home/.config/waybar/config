@@ -101,7 +101,7 @@
 		"format-alt": "{ifname}: {ipaddr}/{cidr}",
 	},
 	"bluetooth": {
-		"on-click": "blueberry",
+		"on-click": "blueman-manager",
 		"format": "󰂯 {status}",
 		"format-on": "󰂯",
 		"format-enabled": "󰂯",
