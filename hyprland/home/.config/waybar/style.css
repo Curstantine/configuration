@@ -2,8 +2,12 @@
     border: none;
     border-radius: 0;
     font-family: "Inter Nerd Font Propo", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     min-height: 0;
+}
+
+window.HDMI-A-1 * {
+	font-size: 12px;
 }
 
 window#waybar {
@@ -19,6 +23,10 @@ tooltip {
 
 tooltip label {
   color: white;
+}
+
+.modules-right {
+	padding-right: 12px;
 }
 
 #workspaces {
@@ -37,12 +45,8 @@ tooltip label {
     border-bottom: 1px solid #FF6077;
 }
 
-#tray, #cpu, #memory, #bluetooth, #wireplumber, #custom-brightness, #network, #backlight, #battery, #clock {
+#tray, #cpu, #memory, #bluetooth, #wireplumber, #custom-brightness, #backlight, #battery {
     padding-right: 8px;
-}
-
-#clock {
-    padding-right: 12px;
 }
 
 #battery.charging {
