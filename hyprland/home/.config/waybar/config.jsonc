@@ -15,7 +15,6 @@
 			"bluetooth",
 			"wireplumber",
 			"network",
-			"battery",
 		],
 		"hyprland/window": {
 			"max-length": 50,
@@ -50,26 +49,12 @@
 			"format-icons": ["", "", "", "", "", "", "", "", ""],
 		},
 		"custom/brightness": {
-			"exec": "ddcutil getvcp 10 -t | grep '^VCP' | awk '{print $4}'",
+			"exec": "ddcutil -b 4 getvcp 10 -t | grep '^VCP' | awk '{print $4}'",
 			"format": " {}%",
 			"interval": "once",
-			"on-scroll-up": "ddcutil setvcp 10 + 5",
-			"on-scroll-down": "ddcutil setvcp 10 - 5",
+			"on-scroll-up": "ddcutil -b 4 setvcp 10 + 5",
+			"on-scroll-down": "ddcutil -b 4 setvcp 10 - 5",
 			"tooltip": false,
-		},
-		"battery": {
-			"interval": 5,
-			"states": {
-				"full": 100,
-				"good": 95,
-				"warning": 30,
-				"critical": 15,
-			},
-			"format": "{icon} {capacity}%",
-			"format-charging": " {capacity}%",
-			"format-plugged": " {capacity}%",
-			"format-alt": "{icon} {time}",
-			"format-icons": ["", "", "", "", ""],
 		},
 		"network": {
 			"format-wifi": "  {signalStrength}%",
@@ -110,7 +95,15 @@
 		"layer": "top",
 		"modules-left": ["hyprland/workspaces"],
 		"modules-center": ["hyprland/window"],
-		"modules-right": ["clock"],
+		"modules-right": ["custom/brightness", "clock"],
+		"custom/brightness": {
+			"exec": "ddcutil -b 3 getvcp 10 -t | grep '^VCP' | awk '{print $4}'",
+			"format": " {}%",
+			"interval": "once",
+			"on-scroll-up": "ddcutil -b 3 setvcp 10 + 5",
+			"on-scroll-down": "ddcutil -b 3 setvcp 10 - 5",
+			"tooltip": false,
+		},
 
 		"clock": {
 			"interval": 60,
