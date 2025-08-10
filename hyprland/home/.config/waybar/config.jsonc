@@ -93,8 +93,7 @@
 		"output": "HDMI-A-1",
 		"height": 28,
 		"layer": "top",
-		"modules-left": ["hyprland/workspaces"],
-		"modules-center": ["hyprland/window"],
+		"modules-left": ["hyprland/workspaces", "hyprland/window"],
 		"modules-right": ["custom/brightness", "clock"],
 		"custom/brightness": {
 			"exec": "ddcutil -b 3 getvcp 10 -t | grep '^VCP' | awk '{print $4}'",
