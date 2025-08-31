@@ -2,7 +2,7 @@
 	{
 		"height": 28,
 		"layer": "top",
-		"output": "DP-1",
+		"output": "DP-4",
 		"name": "main",
 		"modules-left": ["hyprland/workspaces", "hyprland/window"],
 		"modules-center": ["mpris"],
@@ -90,7 +90,7 @@
 		},
 	},
 	{
-		"output": "HDMI-A-1",
+		"output": "DP-5",
 		"height": 28,
 		"layer": "top",
 		"modules-left": ["hyprland/workspaces", "hyprland/window"],
