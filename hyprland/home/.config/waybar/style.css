@@ -11,7 +11,9 @@ window.DP-5 * {
 }
 
 window#waybar {
-    background: #2C2E34;
+    background: RGBA(44, 46, 52, 0.8);
+
+	/*background: transparent;*/
     border-bottom: 2px solid #363944;
     color: #E2E2E3;
 }
@@ -34,7 +36,7 @@ tooltip label {
 }
 
 #workspaces button {
-    padding: 2px 10px;
+    padding: 2px 12px;
     color: #E2E2E3;
     background: transparent;
     border-bottom: 1px solid transparent;
