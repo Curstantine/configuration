@@ -1,5 +1,5 @@
 {
-    "Name": "Default",
+    "Name": "Vertical",
     "Version": 1,
     "Widgets": [
         {
@@ -116,16 +116,16 @@
                                                         },
                                                         {
                                                             "SplitterVertical": {
-                                                                "State": "AAAA/wAAAAEAAAACAAAAUwAAAqgA/////wEAAAACAA==",
+                                                                "State": "AAAA/wAAAAEAAAACAAAAIQAAAqgA/////wEAAAACAA==",
                                                                 "Widgets": [
                                                                     {
-                                                                        "PlaylistOrganiser": {
+                                                                        "PlaylistSwitcher": {
                                                                         }
                                                                     },
                                                                     {
                                                                         "Playlist": {
-                                                                            "Columns": "8:132|3|0:2|1|7:2|2",
-                                                                            "HeaderState": "AAAAdXjaY2BgYGNgYEgBYhEkGoZBciDABMTMQMwIxKxAzAKSs5/2J2LtF3UW+9NV4SfWx4jYL4Pyb1jeSrUz1LXf+jFe9GO8mP0F28CAAMZNIM0M/4EAAHmtGs0=",
+                                                                            "Columns": "8:132|3|0:2|1|7:2",
+                                                                            "HeaderState": "AAAAZXjaY2BgYGVgYJBmYGDsB9LmQPoCkM5kgIiDABMQMwMxIxCzgMTtZ10UUnBvum1/I/B1q9yOIPtVUP4dh6p1uRX77XfOBIFZIA0M/4EAAPSuGfk=",
                                                                             "ID": "8ec484462e244db58e5c224756194383",
                                                                             "Preset": 0,
                                                                             "SingleMode": false
