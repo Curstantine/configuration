@@ -2,24 +2,30 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
-
 {
-  imports = [ ./hardware-configuration.nix ];
-
-  nixpkgs.config.allowUnfree = true;
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nan";
-  networking.wireless.iwd.enable = true;
-  networking.wireless.iwd.settings = {
-    Settings = {
-      AutoConnect = true;
-    };
-  };
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  networking.hostName = "maomao";
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Asia/Colombo";
@@ -29,84 +35,84 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  # i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
     keyMap = "dvorak";
-    earlySetup = true;
-  };
-  
-  users.defaultUserShell = pkgs.fish;
-  users.users.curstantine = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    packages = with pkgs; [
-      vscode
-      vesktop
-    ];
+    font = "Lat2-Terminus16";
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-    ghostty
-    kitty
-    wget
-    rofi
-    mako
-    playerctl
-    grimblast
+  # DM Setup (KDE)
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
 
-    hyprpicker
-    hyprpaper
+  # Configure keymap in X11
+  # services.xserver.xkb.layout = "us";
+  services.xserver.xkb.variant = "dvorak";
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-    fishPlugins.done
-    fishPlugins.fzf-fish
-    fishPlugins.forgit
-    fishPlugins.hydro
-    fzf
-    fishPlugins.grc
-    grc
+  # Enable CUPS to print documents.
+  # services.printing.enable = true;
 
-    chromium
-    nwg-look
-  ];
-
-  fonts.packages = with pkgs; [
-    inter
-    (nerdfonts.override { fonts = [ "ZedMono" "JetBrainsMono" ] ;})
-  ];
-
-  programs.fish.enable = true;
-  programs.chromium.enable = true;
-  programs.direnv.enable = true;
-
-  programs.hyprland.enable = true;
-  programs.hyprland.withUWSM = true;
-  services.hypridle.enable = true;
-  programs.hyprlock.enable = true;
-  programs.waybar.enable = true;
-
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
+  # Enable sound.
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    alsa.enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+  # User Management
+  users.defaultUserShell = pkgs.fish;
+  users.users.curstantine = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "adbusers"
+    ];
+    useDefaultShell = true;
   };
 
-  services.openssh.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  # Home Manager setup
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.curstantine = ./home.nix;
   };
 
-  qt.enable = true;
-  qt.platformTheme = "qt5ct";
+  nixpkgs.config.allowUnfree = true;
+
+  # Extra Programs
+  programs.fish.enable = true;
+  programs.firefox.enable = true;
+  programs.adb.enable = true;
+
+  # List packages installed in system profile.
+  # You can use https://search.nixos.org/ to find more packages (and options).
+  environment.systemPackages = with pkgs; [
+    wget
+    mpv
+    helix
+
+    # KDE
+    kdePackages.kcalc
+    kdePackages.kcharselect
+    kdePackages.kclock
+    kdePackages.kcolorchooser
+    kdePackages.ksystemlog
+    kdePackages.sddm-kcm
+    kdePackages.partitionmanager
+
+    hardinfo2
+    wayland-utils
+    wl-clipboard
+  ];
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -136,7 +142,6 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-

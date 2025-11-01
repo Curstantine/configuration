@@ -1,0 +1,170 @@
+{
+    "Name": "Vertical",
+    "Version": 1,
+    "Widgets": [
+        {
+            "SplitterVertical": {
+                "State": "AAAA/wAAAAEAAAACAAAAKAAABwYA/////wEAAAACAA==",
+                "Widgets": [
+                    {
+                        "SplitterHorizontal": {
+                            "State": "AAAA/wAAAAEAAAACAAAAhAAAA50A/////wEAAAABAA==",
+                            "Widgets": [
+                                {
+                                    "PlayerControls": {
+                                    }
+                                },
+                                {
+                                    "SplitterHorizontal": {
+                                        "State": "AAAA/wAAAAEAAAAEAAAAGQAAAvkAAAAWAAAAcgD/////AQAAAAEA",
+                                        "Widgets": [
+                                            {
+                                                "Spacer": {
+                                                }
+                                            },
+                                            {
+                                                "SeekBar": {
+                                                    "ElapsedTotal": true,
+                                                    "ShowLabels": true
+                                                }
+                                            },
+                                            {
+                                                "Spacer": {
+                                                }
+                                            },
+                                            {
+                                                "WaveBar": {
+                                                    "ElapsedTotal": false,
+                                                    "ShowLabels": false
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "SplitterVertical": {
+                            "State": "AAAA/wAAAAEAAAACAAAG7wAAABYA/////wEAAAACAA==",
+                            "Widgets": [
+                                {
+                                    "SplitterVertical": {
+                                        "State": "AAAA/wAAAAEAAAAEAAAD7QAAAukAAAAGAAAABgD/////AQAAAAIA",
+                                        "Widgets": [
+                                            {
+                                                "SplitterVertical": {
+                                                    "State": "AAAA/wAAAAEAAAACAAAAKgAAA94A/////wEAAAACAA==",
+                                                    "Widgets": [
+                                                        {
+                                                            "SearchBar": {
+                                                                "AutoSearch": true,
+                                                                "SearchMode": 0,
+                                                                "Widgets": "38f5e08d2dc248349731dce681e3ca84"
+                                                            }
+                                                        },
+                                                        {
+                                                            "SplitterHorizontal": {
+                                                                "State": "AAAA/wAAAAEAAAACAAABHwAAAwIA/////wEAAAABAA==",
+                                                                "Widgets": [
+                                                                    {
+                                                                        "LibraryFilter": {
+                                                                            "AlternatingRows": false,
+                                                                            "Artwork": 0,
+                                                                            "Captions": 1,
+                                                                            "Columns": "1",
+                                                                            "Display": 0,
+                                                                            "Group": "Default",
+                                                                            "ID": "b1c88ebef920442da04ad47b432b7eb2",
+                                                                            "Index": 0,
+                                                                            "ShowHeader": false,
+                                                                            "ShowScrollbar": true,
+                                                                            "ShowSummary": true,
+                                                                            "State": "AAAAJXjaY2BgYAQiLgYwDQaM9h+gDKgAAwAU9gE/"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "LibraryFilter": {
+                                                                            "AlternatingRows": false,
+                                                                            "Artwork": 0,
+                                                                            "Captions": 1,
+                                                                            "Columns": "1:4|3:4",
+                                                                            "Display": 1,
+                                                                            "Group": "Default",
+                                                                            "ID": "38f5e08d2dc248349731dce681e3ca84",
+                                                                            "Index": 1,
+                                                                            "ShowHeader": false,
+                                                                            "ShowScrollbar": true,
+                                                                            "ShowSummary": false,
+                                                                            "State": "AAAANXjaY2BgYGJgYCgCUtUMEDYjAwQw2R+uTjr2+uo8+9eK6n6uXDMYYJIAuC0Iog=="
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "TabStack": {
+                                                    "Position": "North",
+                                                    "State": "Queue\u001fPlaylists",
+                                                    "Widgets": [
+                                                        {
+                                                            "PlaybackQueue": {
+                                                            }
+                                                        },
+                                                        {
+                                                            "SplitterVertical": {
+                                                                "State": "AAAA/wAAAAEAAAACAAAAIQAAAqgA/////wEAAAACAA==",
+                                                                "Widgets": [
+                                                                    {
+                                                                        "PlaylistSwitcher": {
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "Playlist": {
+                                                                            "Columns": "8:132|3|0:2|1|7:2",
+                                                                            "HeaderState": "AAAAZXjaY2BgYGVgYJBmYGDsB9LmQPoCkM5kgIiDABMQMwMxIxCzgMTtZ10UUnBvum1/I/B1q9yOIPtVUP4dh6p1uRX77XfOBIFZIA0M/4EAAPSuGfk=",
+                                                                            "ID": "8ec484462e244db58e5c224756194383",
+                                                                            "Preset": 0,
+                                                                            "SingleMode": false
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "TabStack": {
+                                                    "Position": "North",
+                                                    "State": "",
+                                                    "Widgets": [
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "TabStack": {
+                                                    "Position": "North",
+                                                    "State": "",
+                                                    "Widgets": [
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "StatusBar": {
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

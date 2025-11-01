@@ -8,49 +8,45 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/fd707b0c-2df2-4216-ae7b-39ac14d11c93";
+    { device = "/dev/disk/by-uuid/dece6e59-b211-4ddb-826f-60e7f2be5d5b";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/2C79-64E6";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
+
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/fd707b0c-2df2-4216-ae7b-39ac14d11c93";
+    { device = "/dev/disk/by-uuid/dece6e59-b211-4ddb-826f-60e7f2be5d5b";
       fsType = "btrfs";
       options = [ "subvol=home" ];
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/0FDA-A6C3";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/fd707b0c-2df2-4216-ae7b-39ac14d11c93";
+    { device = "/dev/disk/by-uuid/dece6e59-b211-4ddb-826f-60e7f2be5d5b";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
 
-  fileSystems."/data/storage" =
-    { device = "/dev/disk/by-uuid/6E387FD3387F9933";
-      fsType = "ntfs-3g";
-      options = [ "rw" "uid=1000" ];
-    };
-
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/390d6eb5-2104-4391-89c1-3fa33e98eb9d"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp15s0f3u1u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp9s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp10s0.useDHCP = lib.mkDefault true;
 
