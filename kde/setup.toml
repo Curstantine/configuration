@@ -1,7 +1,0 @@
-[info]
-name = "KDE"
-version = 1
-username = "Curstantine"
-use_shared = true
-
-requires = ["refind", "plasma", "google-chrome"]
